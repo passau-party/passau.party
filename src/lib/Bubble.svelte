@@ -21,7 +21,7 @@
 <style>
     div {
         border-radius: 10px;
-        margin-bottom: 1rem;
+        margin: 1rem;
         border: 2px solid #646cff;
     }
 

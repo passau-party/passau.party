@@ -27,7 +27,7 @@
 
 <style>
   div {
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 5rem;
   }
 </style>
