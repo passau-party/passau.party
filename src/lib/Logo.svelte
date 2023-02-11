@@ -1,8 +1,10 @@
 <script lang="ts">
-    import Scrollbutton from "./Scrollbutton.svelte";
+    import Help from "./Help.svelte";
+import Scrollbutton from "./Scrollbutton.svelte";
 </script>
 <div>
     <h1>passau.party 🎉</h1>
+    <Help />
 </div>
 
 <style>
@@ -12,7 +14,6 @@
         top: 0;
         background-color: var(--secondary-accent-color);
         width: 100%;
-        /*border-bottom: 5px solid rgb(49, 49, 49);*/
         text-align: center;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
