@@ -18,7 +18,9 @@ export default defineConfig({
           short_name: "passau.party",
           description: "A chat for party people in Passau",
           theme_color: "#ffffff",
-          "icons": [
+          start_url: "/",
+          display: "standalone",
+          icons: [
             {
              "src": "\/android-icon-36x36.png",
              "sizes": "36x36",
