@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
   import Bubble from "./Bubble.svelte";
-    import { fetchMessages, registerBackendListener } from "./controller";
-  //import { fetchMessages } from "./controller";
+  import { fetchMessages, registerBackendListener } from "./controller";
   import type {Message} from "./interfaces";
   import { messages } from "./model";
 
