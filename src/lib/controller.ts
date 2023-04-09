@@ -5,7 +5,16 @@ import PocketBase from 'pocketbase';
 const pb = new PocketBase('https://party.pxldeveloper.eu');
 
 export async function fetchMessages() {
-    const record = await pb.collection('messages').getList(1, 100)
+    const record = await pb.collection('messages').getList(1, 100, {
+        expand: 'users'
+    })
+
+    const posts = await pb.collection('posts').getList(1, 100, {
+        expand: 'users'
+
+    })
+    console.log(posts)
+
     let fetchedMessages: Message[] = [];
     record.items.forEach(item => {
     fetchedMessages.push({
@@ -25,6 +34,7 @@ export function registerBackendListener() {
                 content: e.record.content,
                 date: e.record.created
             })
+            console.log(e)
             return extendedMessages;
         })
     })

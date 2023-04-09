@@ -1,15 +1,12 @@
 <script lang="ts">
-    import Chat from "./lib/Chat.svelte";
-    import Typebar from "./lib/Typebar.svelte";
-    import Logo from "./lib/Logo.svelte";
+  import Billboard from './lib/Billboard.svelte';
+  import Logo from './lib/Logo.svelte';
 </script>
 
 <main>
-    <Logo />
-    <Chat />
-    <Typebar />
+  <Logo />
+  <Billboard />
 </main>
 
 <style>
-  
 </style>

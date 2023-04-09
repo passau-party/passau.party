@@ -7,10 +7,11 @@
   color: rgba(255, 255, 255, 0.87);
 
   --main-bg-color: #242424;
+  --secondard-bg-color: #242947;
   --accent-color: #646cff;
   --secondary-accent-color: #535bf2;
 
-  background-color: var(--main-bg-color);
+  background-color: "white";
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -57,7 +58,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+/*@media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -68,4 +69,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+}*/
