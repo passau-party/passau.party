@@ -1,7 +1,7 @@
 <script lang="ts">
   import moment from 'moment';
   import 'moment/locale/de';
-  import type { PartyType } from './types';
+  import type { PartyType } from '../types/types';
   moment.locale('de');
 
   export let party: PartyType;

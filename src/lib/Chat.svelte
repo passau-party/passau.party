@@ -1,27 +1,27 @@
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
-  import Bubble from "./Bubble.svelte";
-  import { fetchMessages, registerBackendListener } from "./controller";
-  import type {Message} from "./interfaces";
-  import { messages } from "./model";
+  import { onDestroy, onMount } from 'svelte';
+  import Bubble from './ChatBubble.svelte';
+  import {
+    fetchMessages,
+    registerBackendListener,
+  } from '../helpers/controller';
+  import type { Message } from '../types/interfaces';
+  import { messages } from '../helpers/model';
 
   onMount(() => {
-    fetchMessages()
-    registerBackendListener()
-  })
+    fetchMessages();
+    registerBackendListener();
+  });
 
-  let displayedMessages = []
+  let displayedMessages = [];
 
-  messages.subscribe(() => {
-    
-  })
-  
+  messages.subscribe(() => {});
 </script>
 
 <div>
-  { #each $messages as message }
-    <Bubble content={message.content} date={message.date} />  
-  { /each }
+  {#each $messages as message}
+    <Bubble content={message.content} date={message.date} />
+  {/each}
 </div>
 
 <style>

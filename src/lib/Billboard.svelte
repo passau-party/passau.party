@@ -1,10 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { getPartys, type IcalObject } from './calendar-parser';
-  import Party from './Party.svelte';
-  import PartyDialog from './PartyDialog.svelte';
-  import type { PartyType } from './types';
+  import { getPartys, type IcalObject } from '../helpers/calendar-parser';
+  import Party from './PartyCard.svelte';
+  import type { PartyType } from '../types/types';
   import moment from 'moment';
+  import MessageDialog from './MessageDialog.svelte';
+  import PartyDialog from './PartyDialog.svelte';
 
   let selectedParty: PartyType | undefined = undefined;
   let partys: Array<any> = [];
@@ -32,12 +33,11 @@
       onPartyClick={(p) => (selectedParty = p)}
     />
   {/each}
-  {#if selectedParty !== undefined}
-    <PartyDialog
-      party={selectedParty}
-      onClose={() => (selectedParty = undefined)}
-    />
-  {/if}
+  <PartyDialog
+    onPartyClose={() => (selectedParty = undefined)}
+    party={selectedParty}
+  />
+  <MessageDialog />
 </div>
 
 <style>
