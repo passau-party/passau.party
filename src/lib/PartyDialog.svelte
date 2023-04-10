@@ -23,7 +23,7 @@
 
 <style>
   .dialog-bg {
-    position: absolute;
+    position: fixed;
     z-index: 100;
     top: 0;
     left: 0;
@@ -34,7 +34,7 @@
 
   .dialog-root {
     padding: 1rem;
-    position: absolute;
+    position: fixed;
     background-color: #646cff;
     border-radius: 1rem;
     transform: translate(-50%, -50%);
