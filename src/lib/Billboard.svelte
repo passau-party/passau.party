@@ -22,6 +22,9 @@
 </script>
 
 <div>
+  <h3 style="text-decoration: underline;">
+    Du hast bock auf Party? Hier hast du welche!
+  </h3>
   {#each partys as partyy}
     <Party
       party={{

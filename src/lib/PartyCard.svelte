@@ -10,7 +10,7 @@
 
 <div>
   <h3>{party.name}</h3>
-  <p>{moment(party.startDatetime).fromNow()}</p>
+  <p><strong>{moment(party.startDatetime).fromNow()}</strong></p>
   <p>
     Location: {party.location !== undefined ? party.location : 'Nicht angegben'}
   </p>

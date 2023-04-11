@@ -2,7 +2,8 @@
   import moment from 'moment';
   import type { PartyType } from '../types/types';
   import Dialog from './Dialog.svelte';
-  import { createEventDispatcher } from 'svelte';
+  import Icon from 'svelte-awesome';
+  import close from 'svelte-awesome/icons/close';
 
   export let party: PartyType;
   export let onPartyClose: () => void;
@@ -12,13 +13,30 @@
 </script>
 
 <Dialog {opened} on:close={onPartyClose}>
-  <h1>{party.name}</h1>
+  <div class="dialog-header">
+    <h2>{party.name}</h2>
+    <button id="close-button" on:click={() => (party = undefined)}
+      ><Icon style="width: 1.5rem; height: 1.5rem;" data={close} /></button
+    >
+  </div>
   <p>{party.description}</p>
-  <p>{moment(party.startDatetime).calendar()}</p>
+  <strong>{moment(party.startDatetime).calendar()}</strong>
   <p>
-    Location: {party.location !== undefined
-      ? party.location
-      : 'Nicht angegeben'}
+    <strong>
+      Location: {party.location !== undefined
+        ? party.location
+        : 'Nicht angegeben'}
+    </strong>
   </p>
-  <button on:click={onPartyClose}>Schließen</button>
 </Dialog>
+
+<style>
+  #close-button {
+    background-color: transparent;
+  }
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+</style>
