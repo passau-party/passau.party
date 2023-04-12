@@ -18,13 +18,11 @@
         moment(snd['DTSTART;TZID=Europe/Berlin']).unix()
       );
     });
+    partys = partys.filter((party) => moment(party['DTSTART;TZID=Europe/Berlin']).unix() * 1000 > moment.now())
   });
 </script>
 
 <div>
-  <h3 style="text-decoration: underline;">
-    Du hast bock auf Party? Hier hast du welche!
-  </h3>
   {#each partys as partyy}
     <Party
       party={{
@@ -45,7 +43,6 @@
 
 <style>
   div {
-    margin-top: 6rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
