@@ -1,46 +1,13 @@
-import type { Message } from "../types/interfaces";
-import { messages } from "./model";
 import PocketBase from "pocketbase";
+import type { Record } from "pocketbase";
+import type { PartyType, RequestStatus } from "../types/types";
+import moment from "moment";
 
 const pb = new PocketBase("https://party.pxldeveloper.eu");
 
-export async function fetchMessages() {
-  const record = await pb.collection("messages").getList(1, 100, {
-    expand: "users",
-  });
-
-  const posts = await pb.collection("posts").getList(1, 100, {
-    expand: "users",
-  });
-  console.log(posts);
-
-  let fetchedMessages: Message[] = [];
-  record.items.forEach((item) => {
-    fetchedMessages.push({
-      content: item.content,
-      date: item.created,
-    });
-  });
-  messages.update(() => fetchedMessages);
+export async function getPartys(): Promise<Record[]> {
+  const partys = (await pb.collection("partys").getList(1, 100, { filter: `datetime >= "${moment().format('YYYY-MM-DD HH:mm:ss')}"` })).items;
+  return partys;
 }
 
-export function registerBackendListener() {
-  pb.collection("messages").subscribe("*", (e) => {
-    console.log(e.record);
-    messages.update((ms) => {
-      let extendedMessages = ms;
-      extendedMessages.push({
-        content: e.record.content,
-        date: e.record.created,
-      });
-      console.log(e);
-      return extendedMessages;
-    });
-  });
-}
-
-export async function sendMessage(message: string) {
-  const record = await pb.collection("messages").create({
-    content: message,
-  });
-}
+export const sendPartySubmission = (party: PartyType) => pb.collection("partys").create(party);

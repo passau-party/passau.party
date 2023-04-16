@@ -1,36 +1,25 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { getPartys, type IcalObject } from '../helpers/calendar-parser';
   import Party from './PartyCard.svelte';
-  import type { PartyType } from '../types/types';
-  import moment from 'moment';
   import MessageDialog from './MessageDialog.svelte';
   import PartyDialog from './PartyDialog.svelte';
+  import { getPartys } from '../helpers/controller';
+  import type { Record } from 'pocketbase';
+    
+  let selectedParty: Record | undefined = undefined;
+  let partys: Record[] = [];
 
-  let selectedParty: PartyType | undefined = undefined;
-  let partys: Array<any> = [];
+  // Minute 4: Hin und wieder wurde ich als zweiter gewählt das fand ich doof...
 
   onMount(async () => {
-    partys = (await getPartys()).VCALENDAR[0].VEVENT as Array<any>;
-    partys = partys.sort((fst, snd) => {
-      return (
-        moment(fst['DTSTART;TZID=Europe/Berlin']).unix() -
-        moment(snd['DTSTART;TZID=Europe/Berlin']).unix()
-      );
-    });
-    partys = partys.filter((party) => moment(party['DTSTART;TZID=Europe/Berlin']).unix() * 1000 > moment.now())
+    partys = await getPartys();
   });
 </script>
 
 <div>
   {#each partys as partyy}
     <Party
-      party={{
-        location: partyy.LOCATION,
-        startDatetime: partyy['DTSTART;TZID=Europe/Berlin'],
-        description: partyy.DESCRIPTION,
-        name: partyy.SUMMARY,
-      }}
+      party={partyy}
       onPartyClick={(p) => (selectedParty = p)}
     />
   {/each}

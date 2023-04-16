@@ -1,16 +1,16 @@
 <script lang="ts">
   import moment from 'moment';
   import 'moment/locale/de';
-  import type { PartyType } from '../types/types';
-  moment.locale('de');
+  import type { Record } from 'pocketbase';
+  
+  export let party: Record;
+  export let onPartyClick: (party: Record) => void;
 
-  export let party: PartyType;
-  export let onPartyClick: (party: PartyType) => void;
 </script>
 
 <div>
   <h3>{party.name}</h3>
-  <p><strong>{moment(party.startDatetime).fromNow()}</strong></p>
+  <p><strong>{moment(party.datetime).fromNow()}</strong></p>
   <p>
     Location: {party.location !== undefined ? party.location : 'Nicht angegben'}
   </p>

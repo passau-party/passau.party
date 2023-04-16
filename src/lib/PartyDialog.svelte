@@ -1,11 +1,11 @@
 <script lang="ts">
   import moment from 'moment';
-  import type { PartyType } from '../types/types';
   import Dialog from './Dialog.svelte';
   import Icon from 'svelte-awesome';
   import close from 'svelte-awesome/icons/close';
+  import type { Record } from 'pocketbase';
 
-  export let party: PartyType;
+  export let party: Record;
   export let onPartyClose: () => void;
 
   let opened = false;

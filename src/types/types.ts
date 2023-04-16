@@ -1,8 +1,9 @@
 export type PartyType = {
   name: string;
   description: string;
-  startDatetime: string;
+  datetime: string;
   location: string;
+  reviewed: boolean;
 };
 
 export type CloseEvent = {
