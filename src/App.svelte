@@ -1,11 +1,17 @@
 <script lang="ts">
-  import Billboard from './lib/Billboard.svelte';
-  import BillboardHeader from './lib/BillboardHeader.svelte';
-  import Logo from './lib/Logo.svelte';
+    import AdminPanel from './lib/AdminPanel.svelte'
+    import Billboard from './lib/Billboard.svelte'
+    import BillboardHeader from './lib/BillboardHeader.svelte'
+    import Logo from './lib/Logo.svelte'
+    let adminMode: boolean = false
 </script>
 
 <main>
-  <Logo />
-  <BillboardHeader />
-  <Billboard />
+    {#if !adminMode}
+        <Logo />
+        <BillboardHeader />
+        <Billboard />
+    {:else}
+        <AdminPanel />
+    {/if}
 </main>

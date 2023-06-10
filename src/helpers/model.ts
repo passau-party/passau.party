@@ -1,4 +1,3 @@
-import PocketBase from 'pocketbase';
+import PocketBase from "pocketbase";
 
-export const pb: PocketBase = new PocketBase("https://party.pxldeveloper.eu");
-
+export const pb: PocketBase = new PocketBase("https://party.pxldeveloper.eu/");

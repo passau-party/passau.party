@@ -1,5 +1,4 @@
 <script lang="ts">
-    import moment from 'moment'
     import DateInput from './DateInput.svelte'
     import Dialog from './Dialog.svelte'
     import FloatingMessageButton from './FloatingMessageButton.svelte'
@@ -8,10 +7,11 @@
     import close from 'svelte-awesome/icons/close'
     import Icon from 'svelte-awesome'
     import { sendPartySubmission } from '../helpers/controller'
+    import moment from 'moment'
 
     let opened = false
 
-    let date: string = moment.now().toString()
+    let date: string = ''
     let partyName: string = ''
     let partyDescription = ''
     let partyLocation = ''
@@ -19,7 +19,7 @@
     let requestStatus: RequestStatus = 'idle'
 
     function clearValues() {
-        date = ''
+        date = undefined
         partyName = ''
         partyDescription = ''
         partyLocation = ''
@@ -28,7 +28,6 @@
     function handleFormSubmit() {
         if (
             date !== undefined &&
-            date !== '' &&
             partyLocation !== undefined &&
             partyLocation !== '' &&
             partyName !== undefined &&
@@ -40,7 +39,7 @@
             sendPartySubmission({
                 name: partyName,
                 description: partyDescription,
-                datetime: Date.now().toString(),
+                datetime: moment(date).toISOString(),
                 location: partyLocation,
                 reviewed: false,
             })
@@ -80,11 +79,7 @@
             />
             <TextInput bind:value={partyLocation} label="Location" />
             <DateInput bind:date label="Datum und Uhrzeit" />
-            <button
-                disabled={requestStatus !== 'idle'}
-                type="submit"
-                style="width: 100%; margin-top: 1rem;"
-            >
+            <button type="submit" style="width: 100%; margin-top: 1rem;">
                 {#if requestStatus === 'idle'}
                     senden
                 {:else if requestStatus === 'pending'}

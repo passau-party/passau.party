@@ -1,7 +1,7 @@
 <script lang="ts">
-    import Help from "./Help.svelte";
-import Scrollbutton from "./Scrollbutton.svelte";
+    import Help from './Help.svelte'
 </script>
+
 <div>
     <h1>passau.party 🎉</h1>
     <Help />
